@@ -17,7 +17,7 @@ public class NonThreadingDemo {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(NonThreadingDemo.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
         }
     }
