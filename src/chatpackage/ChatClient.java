@@ -14,13 +14,16 @@ import java.util.Scanner;
 public class ChatClient {
 
     public static void main(String[] args) throws Exception {
-        Scanner s=new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
         System.out.println("Client");
-        Socket socket = new Socket("127.0.0.1", 777);
-        System.out.println("Hello from Client");
+        String ip = "192.168.1.6";
+//        String ip="127.0.0.1";
+        Socket socket = new Socket(ip, 777);
+        
 //        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-        String data=s.nextLine();
+        System.out.println("Enter message");
+        String data = s.nextLine();
         out.writeObject(data);
 //        System.out.println("Hello from Client");
         out.flush();

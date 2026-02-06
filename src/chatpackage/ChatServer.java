@@ -21,7 +21,7 @@ public class ChatServer {
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             String data =(String) in.readObject();
-            System.out.println(data);
+            System.out.printf("From client %s\n",data);
         }
     }
 }
