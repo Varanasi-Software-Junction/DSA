@@ -13,23 +13,23 @@ public class ChatServer {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Server");
+        String data;
         ServerSocket ss = new ServerSocket(777);
         Scanner s = new Scanner(System.in);
         while (true) {
             System.out.println("Waiting for connection");
             Socket socket = ss.accept();
             System.out.println("Connected");
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            ReadClient client = new ReadClient(socket.getInputStream());
+            client.start();
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-while(true)
-{
-            String data = (String) in.readObject();
-            System.out.printf(" %s\n", data);
-            System.out.println("Enter message");
-            data = s.nextLine();
-            out.writeObject("From server" + data);
-            out.flush();
-}
+            while (true) {
+
+                System.out.println("Enter message\n");
+                data = s.nextLine();
+                out.writeObject("From server  " + data);
+                out.flush();
+            }
 
         }
     }

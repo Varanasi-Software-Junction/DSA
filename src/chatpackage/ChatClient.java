@@ -22,17 +22,15 @@ public class ChatClient {
 
 //        
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-        while(true)
-        {
-        System.out.println("Enter  client  message");
-        String data = s.nextLine();
-        out.writeObject(data);
+        ReadClient client = new ReadClient(socket.getInputStream());
+        client.start();
+        while (true) {
+            System.out.println("Enter  client  message");
+            String data = s.nextLine();
+            out.writeObject(data);
 //        System.out.println("Hello from Client");
-        out.flush();
-        
-        data = (String) in.readObject();
-        System.out.printf(" %s\n", data);
+            out.flush();
+
         }
 
     }
