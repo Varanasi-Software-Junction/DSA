@@ -20,8 +20,11 @@ public class ChatServer {
             System.out.println("Connected");
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            String data =(String) in.readObject();
-            System.out.printf("From client %s\n",data);
+            String data = (String) in.readObject();
+            System.out.printf("From client %s\n", data);
+            out.writeObject("From server" + data);
+            out.flush();
+
         }
     }
 }

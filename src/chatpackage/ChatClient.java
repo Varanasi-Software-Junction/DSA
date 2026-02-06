@@ -19,15 +19,17 @@ public class ChatClient {
         String ip = "192.168.1.6";
 //        String ip="127.0.0.1";
         Socket socket = new Socket(ip, 777);
-        
-//        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+
+//        
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         System.out.println("Enter message");
         String data = s.nextLine();
         out.writeObject(data);
 //        System.out.println("Hello from Client");
         out.flush();
-        out.close();
+        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+        data = (String) in.readObject();
+        System.out.printf(" %s\n", data);
 
     }
 }
